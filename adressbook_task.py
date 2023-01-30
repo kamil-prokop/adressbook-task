@@ -64,6 +64,9 @@ class BaseContact(AdressbookTask):
     def contact(self):
         return f"Wybieram numer {self.priv_tel} i dzwonię do {self.name} {self.surname}"
 
+    @property
+    def label_length(self):
+        return len(self.name) + len(self.surname)
 
 class BusinessContact(BaseContact):
     def __init__(self, job_role, corpo_name, company_tel):
