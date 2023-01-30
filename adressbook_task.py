@@ -55,3 +55,15 @@ print(bronia)
 print(bronia.contact())
 
 print("Naming = ", bronia.naming_length)
+
+class BaseContact(AdressbookTask):
+    def __init__(self, name, surname, tel, email_adress):
+        super().__init__(name, surname, tel, email_adress)
+        self.tel = tel
+
+
+class BusinessContact(BaseContact):
+    def __init__(self, job_role, corpo_name, company_tel):
+        super().__init__(job_role, corpo_name, company_tel)
+        self.corpo_name = corpo_name
+        self.company_tel = company_tel
