@@ -57,9 +57,12 @@ print(bronia.contact())
 print("Naming = ", bronia.naming_length)
 
 class BaseContact(AdressbookTask):
-    def __init__(self, name, surname, tel, email_adress):
-        super().__init__(name, surname, tel, email_adress)
-        self.tel = tel
+    def __init__(self, name, surname, priv_tel, email_adress):
+        super().__init__(name, surname, priv_tel, email_adress)
+        self.priv_tel = priv_tel
+
+    def contact(self):
+        return f"Wybieram numer {self.priv_tel} i dzwonię do {self.name} {self.surname}"
 
 
 class BusinessContact(BaseContact):
@@ -67,3 +70,6 @@ class BusinessContact(BaseContact):
         super().__init__(job_role, corpo_name, company_tel)
         self.corpo_name = corpo_name
         self.company_tel = company_tel
+
+    def contact(self):
+        return f"Wybieram numer {self.company_tel} i dzwonię do {self.name} {self.surname}"
