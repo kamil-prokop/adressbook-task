@@ -45,13 +45,13 @@ instances_creator(fake.name(), fake.name(), fake.company(), fake.job(), fake.ema
 print("SPRAWDZENIE WYWOŁANIA FUNKCJI")
 
 contact_list = []
-#contact_card_type = None
 def create_contacts(contact_card_type=str, quantity=int):
     for i in range(1, quantity+1):
         contact_card_type = AdressbookTask(name = fake.name(), surname=fake.name(), corpo_name= fake.company(), job_role=fake.job(), email_adress = fake.email())
         contact_list.append(contact_card_type)
         print(contact_card_type.name, contact_card_type.surname, contact_card_type.corpo_name, contact_card_type.job_role, contact_card_type.email_adress)
-        
+#        print(contact_list.name, contact_list.surname, contact_list.corpo_name, contact_list.job_role, contact_list.email_adress)
+
 create_contacts("Business", 3)
 
 
@@ -74,10 +74,11 @@ print(bronia.contact())
 print("Naming = ", bronia.naming_length)
 
 class BaseContact(AdressbookTask):
-    def __init__(self, name, surname, priv_tel, email_adress, *args, **kwargs):
-        super().__init__(name, surname, priv_tel, email_adress)
+    def __init__(self, name, surname, priv_tel, email_address, *args, **kwargs):
+        super().__init__(self, name, surname, job_role=None, email_adress=None)
         self.priv_tel = priv_tel
-
+        self.email_address = email_address
+        
     def contact(self):
         return f"Wybieram numer {self.priv_tel} i dzwonię do {self.name} {self.surname}"
 
@@ -85,9 +86,11 @@ class BaseContact(AdressbookTask):
     def label_length(self):
         return len(self.name) + len(self.surname)
 
+
 class BusinessContact(BaseContact):
     def __init__(self, job_role, corpo_name, company_tel, *args, **kwargs):
         super().__init__(job_role, corpo_name, company_tel)
+        self.job_role=job_role
         self.corpo_name = corpo_name
         self.company_tel = company_tel
 
